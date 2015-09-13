@@ -40,12 +40,6 @@ Meteor.startup(function(){
 
 	var Twit = Meteor.npmRequire('twit');
 
-	var T = new Twit({
-		consumer_key: "O8oj6DrDmnpfX3vnp22GGNha7",
-		consumer_secret: "AbxCwN5OTVmD2TCnaW42dJnPddlhRXemQFO6Wp023ZFeNHi6Uq",
-		access_token: "429220099-FqFX3lpEypyiiyfmQPOs1XTqw5DdFJwsJSN0kETn", 
-		access_token_secret: "sC76qKyDXJ4XEsSdIGPpvR4oBa2Uox9WLSSoXe3YsGl0X"
-	})
 
 	T.get('search/tweets',
 	      {
