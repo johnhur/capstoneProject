@@ -2,11 +2,14 @@
   <header>
     <h1>Testing</h1>
   </header>
+	<meteor-include src="loginButtons"></meteor-include>
+	<input ng-model="userInput1" type="text"/>
+	<input ng-model="userInput2" type="text"/>
+	<button ng-click="getTweets(userInput1, userInput2)">Get Tweets</button>
 
-  <ul ng-repeat="spot in surfSpots">
-    <li>{{spot.county_name}} - {{spot.spot_name}}</li>
+  <ul ng-repeat="t in tweets | orderBy:'-'">
+    <li>{{t}}</li>
   </ul>
 
-
-  <button ng-click="getSurf()">get surf</button>
+ 
 </div>
