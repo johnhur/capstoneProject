@@ -1,15 +1,39 @@
-<div class="container">
-  <header>
-    <h1>Testing</h1>
+
+	<header>
+  <h1>Testing</h1>
   </header>
 	<meteor-include src="loginButtons"></meteor-include>
-	<input ng-model="userInput1" type="text"/>
-	<input ng-model="userInput2" type="text"/>
-	<button ng-click="getTweets(userInput1, userInput2)">Get Tweets</button>
+ 				
+	<div class="ui input">
+		<input ng-model="userInput1" type="text"/>
+		<input ng-model="userInput2" type="text"/>
+	</div>
 
-  <ul ng-repeat="t in tweets | orderBy:'-'">
-    <li>{{t}}</li>
-  </ul>
+		<button ng-click="getTweets(userInput1, userInput2)" class="ui primary button">Get Tweets</button>
+		<button ng-click="stopStream()" class="ui primary button">Stop Stream</button>
 
- 
-</div>
+		 
+<p></p>
+	<div class="ui divided grid">
+	<div class="row">
+		<div class="eight wide column">
+<!-- 		<img src="http://www.dolphins-world.com/wp-content/uploads/dolphin-main.jpg" alt=""> -->
+		<canvas id="doughnut" class="chart chart-doughnut"
+ 		 chart-data="data" chart-labels="labels">
+		</canvas> 
+		</div>
+
+		<div class="two wide column">
+		<span>{{userInput1}}</span>
+		<ul>
+  		<li ng-repeat="t in tweets1 | orderBy:'-'">{{t.name}} likes {{t.choice}}</li>
+ 		</ul>
+ 		</div>
+ 		<div class="two wide column">
+ 		<span>{{userInput2}}</span>
+ 		<ul>
+ 			<li ng-repeat="t in tweets2 | orderBy:'-'">{{t.name}} like {{t.choice}}</li>
+ 		</ul>
+ 		</div>
+ 		</div>
+ 	</div>
