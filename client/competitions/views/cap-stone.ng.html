@@ -4,16 +4,16 @@
   </header>
 	<meteor-include src="loginButtons"></meteor-include>
  				
-	<div class="ui input">
+	<div class="ui input" ng-show="$root.currentUser">
 		<input ng-model="competitionName" type="text" placeholder="Competition Name"/>
 		<input ng-model="userInput1" type="text" placeholder="#choice1"/>
 		<input ng-model="userInput2" type="text" placeholder="#choice2"/>
-	</div>
 	
-		<button ng-click="createPoll()" class="ui primary button">Create Poll</button>
-		<button ng-click="getTweets(userInput1, userInput2)" class="ui primary button">Get Tweets</button>
+		<button ng-click="createPoll(userId, competitionName, userInput1, userInput2)" class="ui primary button">Create Poll</button>
+		<button ng-click="getTweets(userId, competitionName, userInput1, userInput2)" class="ui primary button">Get Tweets</button>
 		<button ng-click="stopStream()" class="ui primary button">Stop Stream</button>
-
+		<button ng-click="testing()" class="ui primary button"></button>
+	</div>
 		 
 <p></p>
 	<div class="ui divided grid">
@@ -28,13 +28,13 @@
 		<div class="two wide column">
 		<span>{{userInput1}}</span>
 		<ul>
-  		<li ng-repeat="t in tweets1 | orderBy:'-'">{{t.name}} likes {{t.choice}}</li>
+  		<li ng-repeat="t in cats | orderBy:'-'">{{t.tweeter}} likes {{t.choice}}</li>
  		</ul>
  		</div>
  		<div class="two wide column">
  		<span>{{userInput2}}</span>
  		<ul>
- 			<li ng-repeat="t in tweets2 | orderBy:'-'">{{t.name}} like {{t.choice}}</li>
+ 			<li ng-repeat="t in dogs | orderBy:'-'">{{t.tweeter}} like {{t.choice}}</li>
  		</ul>
  		</div>
  		</div>

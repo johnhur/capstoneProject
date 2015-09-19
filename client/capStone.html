@@ -4,13 +4,13 @@
   
   <script src="https://cdn.jsdelivr.net/angular.chartjs/latest/angular-chart.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/angular.chartjs/latest/angular-chart.css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.js"></script>
 </head>
 
-<body ng-app="tweet-vote"
-      ng-include="'cap-stone.ng.html'"
-      ng-controller="CapStoneCtrl">
+<body ng-app="tweet-vote">
 
+<div ng-view></div>
 </body>
