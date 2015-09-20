@@ -1,6 +1,15 @@
- 
+    Meteor.publish("kitties", function(){
+     return Cats.find();
+    })
+    Meteor.publish("doggies", function(){
+     return Dogs.find();
+    })
+
+
 Meteor.methods({
   createPoll: function(userId, compName, choiceUno, choiceDos){
+
+
   //   Choice1.insert({
   //         user: userId,
   //         pollName: compName,
@@ -35,6 +44,13 @@ Meteor.methods({
   },
 	getTweets: function(userId, compName, word1, word2) {
 
+    // Meteor.publish("kitties", function(){
+    //  return Cats.find({"user": userId, "pollName": compName});
+    // })
+    // Meteor.publish("doggies", function(){
+    //  return Dogs.find({"user": userId, "pollName": compName});
+    // })
+
 // ********* CODE FOR USING 1 (COMPETITION) COLLECTION ***********
     // Meteor.publish('graphData', function(){
     //               // console.log(Competition.find({_id: myId}))
@@ -42,17 +58,17 @@ Meteor.methods({
     //  })
 // ********* CODE FOR USING 1 (COMPETITION) COLLECTION ***********
 
-Meteor.publish('graphData1', function(userId, compName){
-              // console.log(Competition.find({_id: myId})) 
-     // return Cats.find({user: userId, pollName: compName})
+// Meteor.publish('graphData1', function(userId, compName){
+//               // console.log(Competition.find({_id: myId})) 
+//      // return Cats.find({user: userId, pollName: compName})
 
-       return Cats.find({}) // for testing reactivity of collection
- })
+//        return Cats.find({}) // for testing reactivity of collection
+//  })
 
-Meteor.publish('graphData2', function(userId, compName){
-              // console.log(Competition.find({_id: myId}))
-     return Dogs.find({})
- })
+// Meteor.publish('graphData2', function(userId, compName){
+//               // console.log(Competition.find({_id: myId}))
+//      return Dogs.find({})
+//  })
 
     console.log("******* GETTING TWEETS *****")
 // ************** One Collection Code *******************
@@ -88,6 +104,7 @@ Meteor.publish('graphData2', function(userId, compName){
                     text: tweet["text"],
                     choice: hash.text
               });
+              console.log(word1 + " added!");
 
 // ************** Two Collection Code *******************
 
@@ -130,9 +147,12 @@ Meteor.publish('graphData2', function(userId, compName){
                 //     word: "dog",
                 //     tweets: ["frenchy's rule", "dogs are smelly"]
                 //   }
+              
                 // })
+              console.log(word2 + " added!");
+              // console.log(Cats.find({user: Meteor.userId(), pollName: compName}).fetch());
               }
-              console.log(Cats.find({user: Meteor.userId(), pollName: compName}).fetch());
+              
               })
 
               // Choice2.insert({
@@ -142,7 +162,8 @@ Meteor.publish('graphData2', function(userId, compName){
               //   owner: Meteor.userId()
               // });
 
-              }))
+            }))
+
             
           },
           //     Competition.insert({
