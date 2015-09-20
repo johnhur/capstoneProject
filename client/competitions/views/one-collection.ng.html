@@ -9,10 +9,10 @@
 		<input ng-model="userInput1" type="text" placeholder="#choice1"/>
 		<input ng-model="userInput2" type="text" placeholder="#choice2"/>
 	
-		<button ng-click="createPoll(userId, competitionName, userInput1, userInput2)" class="ui primary button">Create Poll</button>
-		<button ng-click="getTweets(userId, competitionName, userInput1, userInput2)" class="ui primary button">Get Tweets</button>
-		<button ng-click="stopStream()" class="ui primary button">Stop Stream</button>
-		<button ng-click="testing()" class="ui primary button"></button>
+		<button ng-click="createPoll(competitionName, userInput1, userInput2)" class="ui primary button">Create Poll</button>
+		<button ng-click="getTweetsC(myId, competitionName, userInput1, userInput2)" class="ui primary button">Get Tweets</button>
+		<button ng-click="stopStreamC()" class="ui primary button">Stop Stream</button>
+
 	</div>
 		 
 <p></p>
@@ -26,19 +26,18 @@
 		</div>
 
 		<div class="two wide column">
-		<span>{{userInput1}}</span>
+		<span ng-show="userInput1">{{userInput1}} - {{choice1Info.length}} votes</span>
 		<!-- <ul>
   		<li ng-repeat="t in cats | orderBy:'-'">{{t.tweeter}} likes {{t.choice}}</li>
  		</ul> -->
-
  				<ul>
- 		  		<li ng-repeat="t in choice1info | orderBy:'-'">{{t.tweeter}} likes {{t.choice}}</li>
+ 		  		<li ng-repeat="t in choice1Info | orderBy:'-'">{{t.name}} likes {{t.text}}</li>
  		 		</ul>
  		</div>
  		<div class="two wide column">
- 		<span>{{userInput2}}</span>
+ 		<span ng-show="userInput2">{{userInput2}} - {{choice2Info.length}} votes</span>
  		<ul>
- 			<li ng-repeat="t in dogs | orderBy:'-'">{{t.tweeter}} like {{t.choice}}</li>
+ 			<li ng-repeat="t in choice2Info | orderBy:'-'">{{t.name}} like {{t.text}}</li>
  		</ul>
  		</div>
  		</div>

@@ -4,97 +4,41 @@
     Meteor.publish("doggies", function(){
      return Dogs.find();
     })
+    Meteor.publish("comps", function(){
+     return Competitions.find();
+    })
 
 
 Meteor.methods({
-  createPoll: function(userId, compName, choiceUno, choiceDos){
-
-
-  //   Choice1.insert({
-  //         user: userId,
-  //         pollName: compName,
-  //         tweeter: "",
-  //         text: "",
-  //         choice: ""
-  //   });
-  //   Choice2.insert({
-  //         user: userId,
-  //         pollName: compName,
-  //         tweeter: "",
-  //         text: "",
-  //         choice: ""
-  //   });
-  // }
-
-// ******** Using 1 Competition Collection **********
-    // s = Competition.insert({
-    //      name: compName,
-    //      key1: {
-    //        word: choiceUno, 
-    //        tweets: [] 
-    //      },
-    //      key2: {
-    //        word: choiceDos,
-    //        tweets: [] 
-    //      }
-    //    });
-    // console.log(s)
-  // console.log("this is s: " + s)
-  // return s
+  createPoll: function(compName, choiceUno, choiceDos){
+    s = Competitions.insert({
+         name: compName,
+         key1: {
+           word: choiceUno, 
+           tweets: [] 
+         },
+         key2: {
+           word: choiceDos,
+           tweets: [] 
+         }
+       });
+  console.log("this is s: " + s)
+  return s
   },
 	getTweets: function(userId, compName, word1, word2) {
-
-    // Meteor.publish("kitties", function(){
-    //  return Cats.find({"user": userId, "pollName": compName});
-    // })
-    // Meteor.publish("doggies", function(){
-    //  return Dogs.find({"user": userId, "pollName": compName});
-    // })
-
-// ********* CODE FOR USING 1 (COMPETITION) COLLECTION ***********
-    // Meteor.publish('graphData', function(){
-    //               // console.log(Competition.find({_id: myId}))
-    //      return Competition.find({_id: myId}).fetch()[0].
-    //  })
-// ********* CODE FOR USING 1 (COMPETITION) COLLECTION ***********
-
-// Meteor.publish('graphData1', function(userId, compName){
-//               // console.log(Competition.find({_id: myId})) 
-//      // return Cats.find({user: userId, pollName: compName})
-
-//        return Cats.find({}) // for testing reactivity of collection
-//  })
-
-// Meteor.publish('graphData2', function(userId, compName){
-//               // console.log(Competition.find({_id: myId}))
-//      return Dogs.find({})
-//  })
-
     console.log("******* GETTING TWEETS *****")
-// ************** One Collection Code *******************
-    // myComp = Competition.find({_id: myId}).fetch() // puts the mongo document into an array format.
-// ************** One Collection Code (END) *******************
-    // console.log(myComp[0].key1.word)
-    // console.log(myComp.key1.word)
-
-      
 		    stream = T.stream('statuses/filter', { track: [word1, word2] }) // the search query for twitter's live streaming api. 
-
         stream.on('disconnect', function (disconnectMessage) {
           console.log("DISCONNECTED")
         })
-
         stream.on('limit', function (limitMessage) {
           console.log("limit message: " + limitMessage.message)
         })
-
         stream.on('error', function (error) {
           console.log("error message: " + error.message)
-        })
-        
+        })       
         stream.on('tweet', Meteor.bindEnvironment(function (tweet) { // creating a separate scope for meteor to process callback functionality. 
-          
-          // console.log(tweet["entities"]["hashtags"][0].text);
+        // console.log(tweet["entities"]["hashtags"][0].text);
           (tweet["entities"]["hashtags"]).forEach(function(hash){
             if("#" + hash.text == word1){
               Cats.insert({
@@ -105,31 +49,6 @@ Meteor.methods({
                     choice: hash.text
               });
               console.log(word1 + " added!");
-
-// ************** Two Collection Code *******************
-
-// ************** Two Collection Code *******************
-
-// ************** One Collection Code *******************
-              // var tempTweets = myComp[0].key1.tweets
-              // var user = {}
-              // user.name = tweet["user"]["name"]
-              // user.text = tweet["text"]
-              // user.choice = hash.text
-              // tempTweets.push(user)
-
-              // Competition.update(myId,{
-              //   $set: { key1: {
-              //       word: word1, 
-              //       tweets: tempTweets
-              //       } 
-              //     }
-              // })
-              
-              // myComp[0].key1.tweets.push(user)
-              // console.log(myComp[0].key1.tweets)
- // ************** One Collection Code (END) *******************
-
             }
             else if("#" + hash.text == word2){
               Dogs.insert({
@@ -139,60 +58,73 @@ Meteor.methods({
                     text: tweet["text"],
                     choice: hash.text
               })
-                //   key1: {
-                //     word: "CAT", 
-                //     tweets: ["savannah's are cute", "I love blue cats"] 
-                //   },
-                //   key2: {
-                //     word: "dog",
-                //     tweets: ["frenchy's rule", "dogs are smelly"]
-                //   }
-              
-                // })
-              console.log(word2 + " added!");
-              // console.log(Cats.find({user: Meteor.userId(), pollName: compName}).fetch());
-              }
-              
+              }              
               })
-
-              // Choice2.insert({
-              //   name: user.name,
-              //   text: user.text,
-              //   choice: user.choice,
-              //   owner: Meteor.userId()
-              // });
-
-            }))
-
-            
+            }))         
           },
-          //     Competition.insert({
-          //       key1.tweets.push(hash.text)
-          //     });
-          //   }
-
-                     //  Tweets.insert({
-          //   competition_name: exampledId,
-          //   word: "cat",
-          //   phrase: "cats rule"
-          // })
-          
-          // once I input new search parameters on client, 
-          // the user.choice becomes null for all tweets in database. 
-
-            // if(user.choice == null){
-
-            // Choice1.insert({
-            //   name: user.name,
-            //   text: user.text,
-            //   choice: user.choice
-            // });
-            // user = {}
-            // }  
     stopStream: function() {
       stream.stop()
       console.log("stream stopped")
-    }
+    },
+      getTweetsC: function(myId, compName, word1, word2) {
+         console.log("******* GETTING TWEETS *****")
+          myComp = Competitions.find({_id: myId}).fetch() // puts the mongo document into an array format.       
+            stream = T.stream('statuses/filter', { track: [word1, word2] }) // the search query for twitter's live streaming api. 
+            stream.on('disconnect', function (disconnectMessage) {
+              console.log("DISCONNECTED")
+            })
+            stream.on('limit', function (limitMessage) {
+              console.log("limit message: " + limitMessage.message)
+            })
+            stream.on('error', function (error) {
+              console.log("error message: " + error.message)
+            })
+            stream.on('tweet', Meteor.bindEnvironment(function (tweet) { // creating a separate scope for meteor to process callback functionality. 
+              // console.log(tweet["entities"]["hashtags"][0].text);
+              (tweet["entities"]["hashtags"]).forEach(function(hash){
+                if("#" + hash.text == word1){
+                  var tempTweets = myComp[0].key1.tweets
+                  var user = {}
+                  user.name = tweet["user"]["name"]
+                  user.text = tweet["text"]
+                  user.choice = hash.text
+                  tempTweets.push(user)
+
+                  Competitions.update(myId,{
+                    $set: { key1: {
+                        word: word1, 
+                        tweets: tempTweets
+                        } 
+                      }
+                  })
+                  console.log(word1 + " added!");
+                   //myComp[0].key1.tweets.push(user)
+                }
+                else if("#" + hash.text == word2){
+                  var tempTweets2 = myComp[0].key2.tweets
+                  var user2 = {}
+                  user2.name = tweet["user"]["name"]
+                  user2.text = tweet["text"]
+                  user2.choice = hash.text
+                  tempTweets2.push(user)
+
+                  Competitions.update(myId,{
+                    $set: { key2: {
+                        word: word2, 
+                        tweets: tempTweets2
+                        } 
+                      }
+                  })
+                  console.log(word2 + " added!");
+                  }
+                  })
+                }))
+              },
+
+      stopStreamC: function() {
+        stream.stop()
+        console.log("stream stopped")
+      }
   });
 
 
