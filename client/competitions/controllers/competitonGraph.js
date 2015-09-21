@@ -3,7 +3,6 @@
        
    $scope.competitions = $meteor.collection(Competitions).subscribe("comps")
 
-
        $meteor.autorun($scope, function(){
        $scope.userId = Meteor.userId()
 

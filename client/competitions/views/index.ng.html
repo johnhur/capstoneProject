@@ -1,0 +1,7 @@
+<h1>INDEX PAGE</h1>
+<div style="height: 100px; width: 100px" ng-repeat="tweet in competitions">
+			<canvas id="doughnut" class="chart chart-doughnut"
+	 		 chart-data="data" chart-labels="labels">
+			</canvas>
+			<a href="#/competitions/{{tweet._id}}">{{tweet.name}}</a>
+</div>
