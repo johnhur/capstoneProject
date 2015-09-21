@@ -20,7 +20,6 @@
         newScore1 = $scope.choice1Info.length
         newScore2 = $scope.choice2Info.length
 
-
         $scope.labels = [$scope.userInput1, $scope.userInput2];
         $scope.data = [newScore1, newScore2]  
 

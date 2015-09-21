@@ -106,7 +106,7 @@ Meteor.methods({
                   user2.name = tweet["user"]["name"]
                   user2.text = tweet["text"]
                   user2.choice = hash.text
-                  tempTweets2.push(user)
+                  tempTweets2.push(user2)
 
                   Competitions.update(myId,{
                     $set: { key2: {

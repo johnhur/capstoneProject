@@ -8,12 +8,12 @@ app.config(function($routeProvider, $locationProvider){
 		templateUrl:'client/competitions/views/cap-stone.ng.html',
 		controller: 'CompListController'
 	})
-	.when('/competitions', {
-		templateUrl:'client/competitions/views/one-collection.ng.html',
+	.when('/new', {
+		templateUrl:'client/competitions/views/new-collection.ng.html',
 		controller: 'CompGraphController'
 	})
 	.when('/competitions/:id',{
-		templateUrl:'client/competitions/views/one-collection.ng.html',
+		templateUrl:'client/competitions/views/show-collection.ng.html',
 		controller: 'competitionShowController'
 	})
 })
