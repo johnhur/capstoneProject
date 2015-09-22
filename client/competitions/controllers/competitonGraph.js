@@ -1,8 +1,7 @@
-    angular.module('tweet-vote').controller('CompGraphController', ['$scope', '$meteor',
+ angular.module('tweet-vote').controller('CompGraphController', ['$scope', '$meteor',
       function($scope, $meteor) {
        
    $scope.competitions = $meteor.collection(Competitions).subscribe("comps")
-
        $meteor.autorun($scope, function(){
        $scope.userId = Meteor.userId()
 
@@ -22,7 +21,6 @@
 
         $scope.labels = [$scope.userInput1, $scope.userInput2];
         $scope.data = [newScore1, newScore2]  
-
       }
       })
 
@@ -46,8 +44,5 @@
     $scope.stopStreamC = function(){
       $meteor.call('stopStreamC')
     }
-
-
-
 
   }])
