@@ -6,6 +6,10 @@ angular.module('tweet-vote').controller('competitionShowController', ['$scope', 
     $meteor.autorun($scope, function(){
     graphData = (Competitions.find({_id: compId}).fetch())
 
+      $scope.word1 = graphData[0].key1.word
+      $scope.word2 = graphData[0].key2.word
+
+
        $scope.choice1Info = graphData[0].key1.tweets
        $scope.choice2Info = graphData[0].key2.tweets
         

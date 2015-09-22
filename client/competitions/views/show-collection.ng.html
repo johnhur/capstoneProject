@@ -14,7 +14,8 @@
 		</div>
 
 		<div class="two wide column">
-		<span ng-show="userInput1">{{userInput1}} - {{choice1Info.length}} votes</span>
+		<i style="color: CornflowerBlue" class="big twitter icon"></i> 
+		<span ng-show="word1">{{word1}} - {{choice1Info.length}} votes</span>
 		<!-- <ul>
   		<li ng-repeat="t in cats | orderBy:'-'">{{t.tweeter}} likes {{t.choice}}</li>
  		</ul> -->
@@ -23,7 +24,8 @@
  		 		</ul>
  		</div>
  		<div class="two wide column">
- 		<span ng-show="userInput2">{{userInput2}} - {{choice2Info.length}} votes</span>
+ 		<i style="color: DarkGray" class="big twitter icon"></i>
+ 		<span ng-show="word2">{{word2}} - {{choice2Info.length}} votes</span>
  		<ul>
  			<li ng-repeat="t in choice2Info | orderBy:'-'">{{t.name}} like {{t.text}}</li>
  		</ul>

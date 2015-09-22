@@ -34,3 +34,5 @@ to trigger the autorun, I could use the getCollectionReactively method for both 
 
 
 
+animated bird. responsive based on incoming tweet. 
+
