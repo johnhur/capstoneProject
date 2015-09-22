@@ -1,11 +1,32 @@
-<div class="ui container">
+
 
 <h1>INDEX PAGE</h1>
-<div style="height: 100px; width: 100px" ng-repeat="tweet in competitions">
+<!-- <div style="height: 100px; width: 100px" ng-repeat="tweet in competitions">
 			<canvas id="doughnut" class="chart chart-doughnut"
 	 		 chart-data="data" chart-labels="labels">
-			</canvas>
-			<a href="#/competitions/{{tweet._id}}">{{tweet.name}}</a>
+			</canvas> -->
+<!-- <ul></ul> -->
+			
+<!-- </div> -->
+
+<div class="ui medium icon input">
+<input ng-model="search" placeholder="Search By Name" type="text">
+<i class="search icon"></i>
 </div>
 
-</div>
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>Competition Name</th>
+      <th>Status</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="comp in competitions | filter: search" >
+      <td><a href="#/competitions/{{tweet._id}}">{{comp.name}}</a></td>
+      <td>Live</td>
+      <td class="positive">{{comp.key1.word}} {{comp.key1.tweets.length}} - {{comp.key2.word}} {{comp.key2.tweets.length}}</td>
+    </tr>
+  </tbody>
+</table>
