@@ -9,27 +9,45 @@
 		<div class="eight wide column">
 <!-- 		<img src="http://www.dolphins-world.com/wp-content/uploads/dolphin-main.jpg" alt=""> -->
 		<canvas id="doughnut" class="chart chart-doughnut"
- 		 chart-data="data" chart-labels="labels">
+ 		 chart-data="data" chart-labels="labels" chart-colours="colors">
 		</canvas> 
 		</div>
 
-		<div class="two wide column">
-		<i style="color: CornflowerBlue" class="big twitter icon"></i> 
-		<span ng-show="word1">{{word1}} - {{choice1Info.length}} votes</span>
+		<div class="four wide column">
+		<i style="color: #ead61c" class="big twitter icon"></i> 
+		<h3 ng-show="word1">{{word1}} - {{choice1Info.length}} votes</h3>
 		<!-- <ul>
   		<li ng-repeat="t in cats | orderBy:'-'">{{t.tweeter}} likes {{t.choice}}</li>
  		</ul> -->
- 				<ul>
- 		  		<li ng-repeat="t in choice1Info | orderBy:'-'">{{t.name}} likes {{t.text}}</li>
- 		 		</ul>
- 		</div>
- 		<div class="two wide column">
- 		<i style="color: DarkGray" class="big twitter icon"></i>
- 		<span ng-show="word2">{{word2}} - {{choice2Info.length}} votes</span>
- 		<ul>
- 			<li ng-repeat="t in choice2Info | orderBy:'-'">{{t.name}} like {{t.text}}</li>
- 		</ul>
- 		</div>
- 		</div>
- 	</div>
+		
+		<div class="ui list">
+		  <div class="item" ng-repeat="t in choice1Info | orderBy:'-'">
+		  <i style="color: #ead61c" class="large twitter icon"></i>
+		    <div class="content">
+		      <a class="header">{{t.name}}</a>
+		      <div class="description">{{t.text}}</div>
+		    </div>
+		  </div>
+		</div>
+		</div>
+	
+	<div class="four wide column">
+	<i style="color: #4d1b7b" class="big twitter icon"></i> 
+	<h3 ng-show="word2">{{word2}} - {{choice2Info.length}} votes</h3>
+
+		<div class="ui list">
+		  <div class="item" ng-repeat="t in choice2Info | orderBy:'-'">
+		  <i style="color: #4d1b7b" class="large twitter icon"></i>
+		    <div class="content">
+		      <a class="header">{{t.name}}</a>
+		      <div class="description">{{t.text}}</div>
+		    </div>
+		  </div>
+		</div>
+	</div>
+
 </div>
+</div>
+</div>
+
+

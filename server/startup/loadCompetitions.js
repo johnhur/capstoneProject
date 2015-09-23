@@ -3,10 +3,10 @@ Meteor.startup(function(){
   // ***** .env and .gitignore files ***** 
   Twit = Meteor.npmRequire('twit');
   T = new Twit({
-    consumer_key: "O8oj6DrDmnpfX3vnp22GGNha7",
-    consumer_secret: "AbxCwN5OTVmD2TCnaW42dJnPddlhRXemQFO6Wp023ZFeNHi6Uq",
-    access_token: "429220099-FqFX3lpEypyiiyfmQPOs1XTqw5DdFJwsJSN0kETn",
-    access_token_secret: "sC76qKyDXJ4XEsSdIGPpvR4oBa2Uox9WLSSoXe3YsGl0X"
+    consumer_key: Meteor.settings.consumer_key,
+    consumer_secret: Meteor.settings.consumer_secret,
+    access_token: Meteor.settings.access_token,
+    access_token_secret: Meteor.settings.access_token_secret
   })
   console.log("*****CONNECTED TO TWITTER STREAM*****")
 });

@@ -1,4 +1,4 @@
-  angular.module('tweet-vote').controller('CompIndexController', ['$scope', '$meteor',
+app.controller('CompIndexController', ['$scope', '$meteor',
     function($scope, $meteor) {
      
  $scope.competitions = $meteor.collection(Competitions).subscribe("comps")
