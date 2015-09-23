@@ -1,4 +1,4 @@
-app.config(function($routeProvider, $locationProvider){
+angular.module('tweet-vote').config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
 	$routeProvider
 	.when('/', {
 		templateUrl: 'client/competitions/views/index.ng.html',
@@ -16,4 +16,4 @@ app.config(function($routeProvider, $locationProvider){
 		templateUrl:'client/competitions/views/show-collection.ng.html',
 		controller: 'competitionShowController'
 	})
-})
+}])

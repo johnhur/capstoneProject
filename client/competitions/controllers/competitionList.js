@@ -1,4 +1,4 @@
-app.controller('CompListController', ['$scope', '$meteor',
+angular.module('tweet-vote').controller('CompListController', ['$scope', '$meteor',
     function($scope, $meteor) {
      
       // difference between the two?  

@@ -1,5 +1,5 @@
-app.controller('competitionShowController', ['$scope', '$meteor', '$routeParams', '$location',
-    function($scope, $meteor, $routeParams, $location) {
+angular.module('tweet-vote').controller('competitionShowController', ['$scope', '$meteor', '$routeParams',
+    function($scope, $meteor, $routeParams) {
     compId = $routeParams.id
     $scope.competitions = $meteor.collection(Competitions).subscribe("comps")
 
