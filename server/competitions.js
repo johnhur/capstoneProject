@@ -83,7 +83,8 @@ Meteor.methods({
     },
     getTweetsC: function(myId, compName, word1, word2) {
        console.log("******* GETTING TWEETS *****")
-        myComp = Competitions.find({_id: myId}).fetch() // puts the mongo document into an array format.       
+        myComp = Competitions.find({_id: myId}).fetch() 
+        // console.log(myComp) // puts the mongo document into an array format.       
           stream = T.stream('statuses/filter', { track: [word1, word2] }) // the search query for twitter's live streaming api. 
           stream.on('disconnect', function (disconnectMessage) {
             console.log("DISCONNECTED")
@@ -97,8 +98,19 @@ Meteor.methods({
           stream.on('tweet', Meteor.bindEnvironment(function (tweet) { // creating a separate scope for meteor to process callback functionality. 
             // console.log(tweet["entities"]["hashtags"][0].text);
             (tweet["entities"]["hashtags"]).forEach(function(hash){
+              var arr = []
               if("#" + hash.text == word1){
                 var tempTweets = myComp[0].key1.tweets
+               
+                tempTweets.forEach(function(t){
+                  console.log(JSON.stringify(t, null, 4))
+                  console.log("this is word1: " + word1)
+                  if ("#" + t.choice == word1){
+                    arr.push(t)
+                  } else {
+                    console.log("found a problem")
+                  }
+                })
                 var user = {}
                 user.name = tweet["user"]["name"]
                 user.text = tweet["text"]
@@ -108,12 +120,12 @@ Meteor.methods({
                 Competitions.update(myId,{
                   $set: { key1: {
                       word: word1, 
-                      tweets: tempTweets
+                      tweets: arr
                       } 
                     }
                 })
-                console.log(word1 + " added!");
                  //myComp[0].key1.tweets.push(user)
+                 console.log(arr)
               }
               else if("#" + hash.text == word2){
                 var tempTweets2 = myComp[0].key2.tweets
@@ -130,7 +142,6 @@ Meteor.methods({
                       } 
                     }
                 })
-                console.log(word2 + " added!");
                 }
           })
         }))

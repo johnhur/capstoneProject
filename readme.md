@@ -37,3 +37,6 @@ consider userId, is_live key, and date.
 animated bird. responsive based on incoming tweet. 
 
 // viewport?? semantic ui styling
+
+// set a scheduler for a competition. 
+    // ex. every 5 minutes, 
