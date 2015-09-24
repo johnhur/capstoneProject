@@ -1,17 +1,14 @@
 <header>
   <h1>Twheel</h1>
   </header>
-	<meteor-include src="loginButtons"></meteor-include>
  				
 	<div class="ui input" ng-show="$root.currentUser">
 		<input ng-model="competitionName" type="text" placeholder="Competition Name"/>
 		<input ng-model="userInput1" type="text" placeholder="#choice1"/>
 		<input ng-model="userInput2" type="text" placeholder="#choice2"/>
-	
 		<button ng-click="createPoll(competitionName, userInput1, userInput2)" class="ui primary button">Create Poll</button>
 		<button ng-click="getTweetsC(myId, competitionName, userInput1, userInput2)" class="ui primary button">Get Tweets</button>
-		<button ng-click="stopStreamC()" class="ui primary button">Stop Stream</button>
-
+		<button ng-click="stopStreamC(myId)" class="ui primary button">Stop Stream</button>
 	</div>
 		 
 <p></p>

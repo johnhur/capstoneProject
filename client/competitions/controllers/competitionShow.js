@@ -9,8 +9,8 @@ angular.module('tweet-vote').controller('competitionShowController', ['$scope', 
       $scope.word1 = graphData[0].key1.word
       $scope.word2 = graphData[0].key2.word
 
-       $scope.choice1Info = graphData[0].key1.tweets
-       $scope.choice2Info = graphData[0].key2.tweets
+      $scope.choice1Info = graphData[0].key1.tweets
+      $scope.choice2Info = graphData[0].key2.tweets
         
       Score1 = $scope.choice1Info.length
       Score2 = $scope.choice2Info.length
@@ -30,6 +30,5 @@ angular.module('tweet-vote').controller('competitionShowController', ['$scope', 
           $scope.winner = "DRAW"
         }
       }
-      // ,'#7FFD1F','#68F000'
     })
 }])

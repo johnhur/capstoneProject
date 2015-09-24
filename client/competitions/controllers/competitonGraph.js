@@ -12,15 +12,12 @@ angular.module('tweet-vote').controller('CompGraphController', ['$scope', '$mete
           if (choice1Data.length > 0){
           $scope.choice1Info = choice1Data[0].key1.tweets
           $scope.choice2Info = choice1Data[0].key2.tweets
-          
-          console.log("choice1Data: " + choice1Data)
-          console.log("autorun")
-      
-        newScore1 = $scope.choice1Info.length
-        newScore2 = $scope.choice2Info.length
-
-        $scope.labels = [$scope.userInput1, $scope.userInput2];
-        $scope.data = [newScore1, newScore2]  
+                
+          newScore1 = $scope.choice1Info.length
+          newScore2 = $scope.choice2Info.length
+  
+          $scope.labels = [$scope.userInput1, $scope.userInput2];
+          $scope.data = [newScore1, newScore2]  
       }
       })
 

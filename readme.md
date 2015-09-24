@@ -1,4 +1,4 @@
-Using one collection, I could more easily add additional parameters to the document being inserted into the collection. 
+Using one collection, I could more easily view competitions in a list format on my index page..
 
 Competition.insert({
          name: compName,
@@ -32,7 +32,8 @@ to trigger the autorun, I could use the getCollectionReactively method for both 
           choice: user.choice
     });
 
-
+consider userId, is_live key, and date. 
 
 animated bird. responsive based on incoming tweet. 
 
+// viewport?? semantic ui styling

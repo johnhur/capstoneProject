@@ -12,6 +12,9 @@ Meteor.methods({
   createPoll: function(compName, choiceUno, choiceDos){
     s = Competitions.insert({
          name: compName,
+         is_live: true,
+         createdAt: new Date(),
+         owner: Meteor.userId(),
          key1: {
            word: choiceUno, 
            tweets: [] 
@@ -21,6 +24,19 @@ Meteor.methods({
            tweets: [] 
          }
        });
+
+    // s = Competitions.insert({
+    //      name: compName,
+    //      live: true.
+    //      key1: {
+    //        word: choiceUno, 
+    //        tweets: [] 
+    //      },
+    //      key2: {
+    //        word: choiceDos,
+    //        tweets: [] 
+    //      }
+    //    });
   console.log("this is s: " + s)
   return s
   },
@@ -116,14 +132,21 @@ Meteor.methods({
                 })
                 console.log(word2 + " added!");
                 }
-                })
-              }))
-            },
+          })
+        }))
+      },
 
-      stopStreamC: function() {
+      stopStreamC: function(myId) {
         stream.stop()
         console.log("stream stopped")
+
+        Competitions.update(myId, {
+          $set: { 
+            is_live: false
+          }
+        })
       }
+
   });
 
 
