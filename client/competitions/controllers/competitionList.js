@@ -13,7 +13,6 @@ angular.module('tweet-vote').controller('CompListController', ['$scope', '$meteo
      $scope.getCollectionReactively("cats")
      $scope.getCollectionReactively("dogs")
 
-
         choice1Data = (Cats.find({user: $scope.userId, pollName: $scope.competitionName}).fetch()).length
         choice2Data = (Dogs.find({user: $scope.userId, pollName: $scope.competitionName}).fetch()).length
 

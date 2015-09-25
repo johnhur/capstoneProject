@@ -24,59 +24,9 @@ Meteor.methods({
            tweets: [] 
          }
        });
-
-    // s = Competitions.insert({
-    //      name: compName,
-    //      live: true.
-    //      key1: {
-    //        word: choiceUno, 
-    //        tweets: [] 
-    //      },
-    //      key2: {
-    //        word: choiceDos,
-    //        tweets: [] 
-    //      }
-    //    });
   console.log("this is s: " + s)
   return s
   },
-	getTweets: function(userId, compName, word1, word2) {
-    console.log("******* GETTING TWEETS *****")
-		    stream = T.stream('statuses/filter', { track: [word1, word2] }) // the search query for twitter's live streaming api. 
-        stream.on('disconnect', function (disconnectMessage) {
-          console.log("DISCONNECTED")
-        })
-        stream.on('limit', function (limitMessage) {
-          console.log("limit message: " + limitMessage.message)
-        })
-        stream.on('error', function (error) {
-          console.log("error message: " + error.message)
-        })       
-        stream.on('tweet', Meteor.bindEnvironment(function (tweet) { // creating a separate scope for meteor to process callback functionality. 
-        // console.log(tweet["entities"]["hashtags"][0].text);
-          (tweet["entities"]["hashtags"]).forEach(function(hash){
-            if("#" + hash.text == word1){
-              Cats.insert({
-                    user: userId,
-                    pollName: compName,
-                    tweeter: tweet["user"]["name"],
-                    text: tweet["text"],
-                    choice: hash.text
-              });
-              console.log(word1 + " added!");
-            }
-            else if("#" + hash.text == word2){
-              Dogs.insert({
-                    user: userId,
-                    pollName: compName,
-                    tweeter: tweet["user"]["name"],
-                    text: tweet["text"],
-                    choice: hash.text
-              })
-              }              
-              })
-            }))         
-          },
     stopStream: function() {
       stream.stop()
       console.log("stream stopped")
@@ -146,11 +96,9 @@ Meteor.methods({
           })
         }))
       },
-
       stopStreamC: function(myId) {
         stream.stop()
         console.log("stream stopped")
-
         Competitions.update(myId, {
           $set: { 
             is_live: false

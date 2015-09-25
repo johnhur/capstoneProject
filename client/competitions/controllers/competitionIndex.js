@@ -1,32 +1,40 @@
 angular.module('tweet-vote').controller('CompIndexController', ['$scope', '$meteor',
     function($scope, $meteor) {
      
- $scope.competitions = $meteor.collection(Competitions).subscribe("comps")
+ $scope.competitions = $meteor.collection(Competitions)
+$scope.series = ['Live', 'Complete']
+$scope.colours = ['#ead61c','#4d1b7b'];
 
+$meteor.autorun($scope, function(){ 
+var reactive = $scope.getCollectionReactively("competitions")
 console.log($scope.competitions)
-
-var arr = []
-// function getLabels(){
-// 	$scope.competitions.forEach(function(data){
-// 	console.log(data.name)
-// 	arr.push(data.name); 
-// })
-// }
+$scope.data = [[],[]]
+arr = []
 
 function getData(){
 	$scope.competitions.forEach(function(data){
 	console.log(data.name)
-	arr.push(data.name); 
+	arr.push(data.name);
+
+	if (data.is_live == true) {
+		console.log("data is live!")
+	$scope.data[0].push(data.key1.tweets.length + data.key2.tweets.length) 
+	} else if (data.is_live == false){
+		console.log("data is not live!")
+	$scope.data[1].push(data.key2.tweets.length + data.key1.tweets.length)
+	} else {
+		console.log("********* is_live property error ************")
+	}
 })
+	console.log("this is scope.data: " + $scope.data)
 }
-getData()
-graph()
+
 function graph() {
 $scope.labels = arr;
 console.log("this is scope.labels: " + $scope.labels)
-$scope.series = ['Live', 'Complete']
-$scope.data = [[5, 10, 20, 10, 20, 10], [6, 10, 50, 2, 20, 10]]
-$scope.colours = ['#ead61c','#4d1b7b'];
 }
+getData()
+graph()
+})
 
 }])

@@ -38,8 +38,8 @@ angular.module('tweet-vote').controller('CompGraphController', ['$scope', '$mete
       $meteor.call('getTweetsC', userId, compName, word1, word2)
     }
 
-    $scope.stopStreamC = function(){
-      $meteor.call('stopStreamC')
+    $scope.stopStreamC = function(myId){
+      $meteor.call('stopStreamC', myId)
     }
 
   }])
