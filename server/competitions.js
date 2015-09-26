@@ -47,11 +47,20 @@ Meteor.methods({
           })
           stream.on('tweet', Meteor.bindEnvironment(function (tweet) { // creating a separate scope for meteor to process callback functionality. 
             // console.log(tweet["entities"]["hashtags"][0].text);
+
             (tweet["entities"]["hashtags"]).forEach(function(hash){
+            
+              var arr2 = []
               var arr = []
               if("#" + hash.text == word1){
                 var tempTweets = myComp[0].key1.tweets
-               
+                var user = {}
+
+                user.name = tweet["user"]["name"]
+                user.text = tweet["text"]
+                user.choice = hash.text
+                tempTweets.push(user)
+                 
                 tempTweets.forEach(function(t){
                   console.log(JSON.stringify(t, null, 4))
                   console.log("this is word1: " + word1)
@@ -61,11 +70,6 @@ Meteor.methods({
                     console.log("found a problem")
                   }
                 })
-                var user = {}
-                user.name = tweet["user"]["name"]
-                user.text = tweet["text"]
-                user.choice = hash.text
-                tempTweets.push(user)
 
                 Competitions.update(myId,{
                   $set: { key1: {
@@ -74,10 +78,9 @@ Meteor.methods({
                       } 
                     }
                 })
-                 //myComp[0].key1.tweets.push(user)
-                 console.log(arr)
-              }
-              else if("#" + hash.text == word2){
+                     console.log(arr)
+                } else if("#" + hash.text == word2){
+
                 var tempTweets2 = myComp[0].key2.tweets
                 var user2 = {}
                 user2.name = tweet["user"]["name"]
@@ -85,10 +88,18 @@ Meteor.methods({
                 user2.choice = hash.text
                 tempTweets2.push(user2)
 
+                tempTweets2.forEach(function(t){
+                  if("#" + t.choice == word2){
+                    arr2.push(t)
+                  } else {
+                    console.log("found a problem")
+                  }
+                })
+
                 Competitions.update(myId,{
                   $set: { key2: {
                       word: word2, 
-                      tweets: tempTweets2
+                      tweets: arr2
                       } 
                     }
                 })
