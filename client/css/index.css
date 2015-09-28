@@ -1,0 +1,17 @@
+.index {
+	padding-top: 3%;
+	margin-left: 5%;
+	max-height: 90%;
+	max-width: 90%;
+}
+
+#barGraph {
+	border: 1px solid purple;
+}
+
+#search {
+	margin-top: 15px;
+}
+
+.info {
+}

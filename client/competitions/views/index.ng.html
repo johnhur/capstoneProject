@@ -5,17 +5,27 @@
 <!-- <ul></ul> -->
 			
 <!-- </div> -->
-
-<canvas id="line" class="chart chart-line" chart-data="data"
-  chart-labels="labels" chart-legend="true" chart-series="series" chart-colours="colours"
-  chart-click="onClick" >
-</canvas> 
+<div class="index">
 
 
-<div class="ui medium icon input">
+<div class="ui grid">
+
+<div id="barGraph" class="twelve wide column">
+<canvas id="bar" class="chart chart-bar"
+  chart-data="data" chart-colours="colours" chart-labels="labels">
+</canvas>
+</div>
+
+<div class="four wide column"><p>What's Being Tweeled About...</p></div>
+</div>
+
+
+<p></p>
+<div id="search" class="ui medium icon input">
 <input ng-model="search" placeholder="Search By Name" type="text">
 <i class="search icon"></i>
 </div>
+
 
 <table class="ui celled table">
   <thead>
@@ -28,8 +38,14 @@
   <tbody>
     <tr ng-repeat="comp in competitions | filter: search" >
       <td><a href="#/competitions/{{comp._id}}">{{comp.name}}</a></td>
-      <td>Live</td>
-      <td class="positive">{{comp.key1.word}} {{comp.key1.tweets.length}} - {{comp.key2.word}} {{comp.key2.tweets.length}}</td>
+      <td>
+        <span ng-show="comp.is_live">Live</span>
+        <span class="positive" ng-show="!comp.is_live">Complete</span>
+      </td>
+      <td ng-show="!comp.is_live" class="positive">{{comp.key1.word}} {{comp.key1.tweets.length}} - {{comp.key2.word}} {{comp.key2.tweets.length}}</td>
+      <td ng-show="comp.is_live">{{comp.key1.word}} {{comp.key1.tweets.length}} - {{comp.key2.word}} {{comp.key2.tweets.length}}</td>
     </tr>
   </tbody>
 </table>
+
+</div>

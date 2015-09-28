@@ -2,11 +2,11 @@ angular.module('tweet-vote').controller('CompIndexController', ['$scope', '$mete
     function($scope, $meteor) {
      
 $scope.competitions = $meteor.collection(Competitions).subscribe('comps')
-$scope.series = ['Live', 'Complete']
+$scope.series = ['', '']
 $scope.colours = ['#ead61c','#4d1b7b'];
 
 $meteor.autorun($scope, function(){ 
-$scope.data = [[],[]]
+$scope.data = [['tweel A'],['tweel B']]
 arr = []
 
 var graphData = $scope.getCollectionReactively('competitions')
