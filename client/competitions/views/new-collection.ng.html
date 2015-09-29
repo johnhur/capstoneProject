@@ -1,15 +1,34 @@
 <header>
   <h1>Tweel</h1>
+  <meteor-include src="loginButtons"></meteor-include>
   </header>
  				
-	<div class="ui input" ng-show="$root.currentUser">
+<!-- 	<div class="ui input" ng-show="$root.currentUser"> -->
+<div class="ui input">
 		<input ng-model="competitionName" type="text" placeholder="Competition Name"/>
 		<input ng-model="userInput1" type="text" placeholder="#choice1"/>
 		<input ng-model="userInput2" type="text" placeholder="#choice2"/>
 		<button ng-click="createPoll(competitionName, userInput1, userInput2)" class="ui primary button">Create Poll</button>
 		<button ng-click="getTweetsC(myId, competitionName, userInput1, userInput2)" class="ui primary button">Get Tweets</button>
 		<button ng-click="stopStreamC(myId)" class="ui primary button">Stop Stream</button>
-	</div>
+</div>
+
+<!-- <div class="ui form">
+  <div class="fields">
+    <div class="field">
+      <label>First name</label>
+      <input type="text" placeholder="First Name">
+    </div>
+    <div class="field">
+      <label>Middle name</label>
+      <input type="text" placeholder="Middle Name">
+    </div>
+    <div class="field">
+      <label>Last name</label>
+      <input type="text" placeholder="Last Name">
+    </div>
+  </div>
+</div> -->
 		 
 <p></p>
 	<div class="ui divided grid">
@@ -17,7 +36,7 @@
 		<div class="eight wide column">
 <!-- 		<img src="http://www.dolphins-world.com/wp-content/uploads/dolphin-main.jpg" alt=""> -->
 		<canvas id="doughnut" class="chart chart-doughnut"
- 		 chart-data="data" chart-labels="labels">
+ 		 chart-data="data" chart-labels="labels" chart-colours="colours">
 		</canvas> 
 		</div>
 

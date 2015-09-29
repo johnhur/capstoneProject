@@ -10,7 +10,7 @@
 
 Meteor.methods({
   createPoll: function(compName, choiceUno, choiceDos){
-    s = Competitions.insert({
+    competitionId = Competitions.insert({
          name: compName,
          is_live: true,
          createdAt: new Date(),
@@ -24,8 +24,8 @@ Meteor.methods({
            tweets: [] 
          }
        });
-  console.log("this is s: " + s)
-  return s
+  console.log("this is the competition ID: " + s)
+  return competitionId
   },
     stopStream: function() {
       stream.stop()

@@ -7,6 +7,10 @@
 
 #barGraph {
 	border: 1px solid purple;
+/*	border-radius: 1%;*/
+	border-radius: 15px 50px 30px;
+	background-color: white;
+	
 }
 
 #search {

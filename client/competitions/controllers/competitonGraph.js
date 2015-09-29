@@ -18,6 +18,7 @@ angular.module('tweet-vote').controller('CompGraphController', ['$scope', '$mete
   
           $scope.labels = [$scope.userInput1, $scope.userInput2];
           $scope.data = [newScore1, newScore2]  
+          $scope.colours = ['#ead61c','#4d1b7b'];
       }
       })
 
