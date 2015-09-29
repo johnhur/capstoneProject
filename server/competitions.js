@@ -24,7 +24,7 @@ Meteor.methods({
            tweets: [] 
          }
        });
-  console.log("this is the competition ID: " + s)
+  console.log("this is the competition ID: " + competitionId)
   return competitionId
   },
     stopStream: function() {
@@ -95,6 +95,8 @@ Meteor.methods({
                     console.log("found a problem")
                   }
                 })
+
+                console.log("COMPETITION BY ID: " + (Competitions.find({_id: myId})));
 
                 Competitions.update(myId,{
                   $set: { key2: {

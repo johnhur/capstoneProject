@@ -2,58 +2,61 @@ angular.module('tweet-vote').controller('CompIndexController', ['$scope', '$mete
     function($scope, $meteor) {
      
 $scope.competitions = $meteor.collection(Competitions).subscribe('comps')
-$scope.series = ['', '']
+$scope.series = ['Tweel A', 'Tweel B']
 $scope.colours = ['#ead61c','#4d1b7b'];
 
 $meteor.autorun($scope, function(){ 
-$scope.data = [['tweel A'],['tweel B']]
+
+$scope.data = [[],[]]
 arr = []
-
-var graphData = $scope.getCollectionReactively('competitions')
-
 // making unique graph data visualizations. 
-var mostPopularComps = {
+var competitionData = {
 	names: [], // array of names for $scope.labels
-	live: [], // number for $scope.data
-  complete: [] // number for $scope.data
+	choice1: [], // number for $scope.data
+  choice2: [] // number for $scope.data
 }
 
 
-
-var mostPopularTweets = {}
+var mostPopularTweets = {} // for more graph visualization of most popular tweel words. 
 // function getData(){
 	
 $scope.competitions.forEach(function(data){
 // 	console.log(data.name)
-	mostPopularComps.names.push(data.name); // graphs most popular competitions in application. 
+	competitionData.names.push(data.name); // graphs most popular competitions in application. 
+	competitionData.choice1.push(data.key1.tweets.length)
+	competitionData.choice2.push(data.key2.tweets.length)
+	arr = competitionData.names
 
-	if (data.is_live == true) {
-		mostPopularComps.live.push(data.key1.tweets.length + data.key2.tweets.length); 
-		mostPopularComps.complete.push(0);
+	$scope.data[0] = competitionData.choice1
+	$scope.data[1] = competitionData.choice2
 
-		if (mostPopularTweets[data.key1.word1]) {
-			mostPopularTweets[data.key1.word1] += data.key1.tweets.length
-		} else {
-			mostPopularTweets[data.key1.word1] = data.key1.tweets.length
-		}
+	// if (data.is_live == true) {
+	// 	mostPopularComps.live.push(data.key1.tweets.length + data.key2.tweets.length); 
+	// 	mostPopularComps.complete.push(0);
 
-		if (mostPopularTweets[data.key2.word2] = data.key2.tweets.length) {
-			mostPopularTweets[data.key2.word2] += data.key2.tweets.length
-		} else {
-			mostPopularTweets[data.key2.word2] = data.key2.tweets.length
-		}
+	// 	if (mostPopularTweets[data.key1.word1]) {
+	// 		mostPopularTweets[data.key1.word1] += data.key1.tweets.length
+	// 	} else {
+	// 		mostPopularTweets[data.key1.word1] = data.key1.tweets.length
+	// 	}
+
+	// 	if (mostPopularTweets[data.key2.word2] = data.key2.tweets.length) {
+	// 		mostPopularTweets[data.key2.word2] += data.key2.tweets.length
+	// 	} else {
+	// 		mostPopularTweets[data.key2.word2] = data.key2.tweets.length
+	// 	}
 
 
-	} else if (data.is_live == false){
-		mostPopularComps.live.push(0);
-		mostPopularComps.complete.push(data.key2.tweets.length + data.key1.tweets.length);
-	} else {
-		console.log("********* is_live property error ************")
-	}
+	// } else if (data.is_live == false){
+	// 	mostPopularComps.live.push(0);
+	// 	mostPopularComps.complete.push(data.key2.tweets.length + data.key1.tweets.length);
+	// } else {
+	// 	console.log("********* is_live property error ************")
+	// }
 
-	arr = mostPopularComps.names
-	$scope.data[0] = mostPopularComps.live
-	$scope.data[1] = mostPopularComps.complete
+	// arr = mostPopularComps.names
+	// $scope.data[0] = mostPopularComps.live
+	// $scope.data[1] = mostPopularComps.complete
 
 })
 // 	console.log("this is scope.data[0]: " + $scope.data[0])
@@ -62,14 +65,11 @@ $scope.competitions.forEach(function(data){
 
 function graph() {
 $scope.labels = arr;
-console.log("this is scope.labels: " + $scope.labels)
 }
-
-var reactive = $scope.getCollectionReactively("competitions")
-console.log($scope.competitions)
-
-// getData()
 graph()
-})
 
+var graphData = $scope.getCollectionReactively('competitions')
+
+
+})
 }])

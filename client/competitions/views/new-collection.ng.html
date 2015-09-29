@@ -1,17 +1,69 @@
+<div class="ui grid">
+<div class="one wide column"></div>
+<div class="fourteen wide column">
+
 <header>
-  <h1>Tweel</h1>
-  <meteor-include src="loginButtons"></meteor-include>
-  </header>
+<div class="ui steps" style="margin: auto;
+    width: 90%;">
+  <div class="active step">
+    <i class="connectdevelop icon"></i>
+    <div class="content">
+      <div class="title">Create Poll</div>
+      <div class="description">Fill in Competition Information</div>
+    </div>
+  </div>
+  <div class="step">
+    <i class="play icon"></i>
+    <div class="content">
+      <div class="title">Start</div>
+      <div class="description">Listens for voters usings your hashtags!</div>
+    </div>
+  </div>
+  <div class="disabled step">
+    <i class="stop icon"></i>
+    <div class="content">
+      <div class="title">Stop</div>
+    </div>
+  </div>
+</div>
+
+<!--   <h1>Tweel</h1>
+  <meteor-include src="loginButtons"></meteor-include> -->
+</header>
+
+<h1>GET THE SERVER SIDE TO CHECK IF COMP IS LIVE OR NOT, BEFORE ADDING TO THE COMPETITION</h1>
  				
 <!-- 	<div class="ui input" ng-show="$root.currentUser"> -->
-<div class="ui input">
-		<input ng-model="competitionName" type="text" placeholder="Competition Name"/>
+<!-- <div class="ui input">
+		<input ng-model="competitionName" type="text" placeholder="Competition Name" autofocus/>
 		<input ng-model="userInput1" type="text" placeholder="#choice1"/>
 		<input ng-model="userInput2" type="text" placeholder="#choice2"/>
-		<button ng-click="createPoll(competitionName, userInput1, userInput2)" class="ui primary button">Create Poll</button>
-		<button ng-click="getTweetsC(myId, competitionName, userInput1, userInput2)" class="ui primary button">Get Tweets</button>
-		<button ng-click="stopStreamC(myId)" class="ui primary button">Stop Stream</button>
+		<button ng-click="createPoll(competitionName, userInput1, userInput2)" class="ui purple basic button">Create Poll</button>
+		<button ng-show="myId" ng-click="getTweetsC(myId, competitionName, userInput1, userInput2)" class="ui purple basic button">Get Tweets</button>
+		<button ng-show="myId" ng-click="stopStreamC(myId)" class="ui purple basic button">Stop Stream</button>
+</div> -->
+
+
+<div class="ui form" style="padding-top: 2%;">
+  <div class="three fields">
+    <div class="field">
+      <label>Competition Name</label>
+      <input ng-model="competitionName" type="text" placeholder="Competition Name" autofocus/>
+    </div>
+    <div class="field">
+    	<label>#choice1</label>
+      <input ng-model="userInput1" type="text" placeholder="#choice1"/>
+    </div>
+    <div class="field">
+    	<label>#choice2</label>
+      <input ng-model="userInput2" type="text" placeholder="#choice2"/>
+    </div>
+  </div>
 </div>
+
+<button ng-click="createPoll(competitionName, userInput1, userInput2)" class="fluid ui purple basic button">1. Create Poll</button>
+<button ng-show="myId" ng-click="getTweetsC(myId, competitionName, userInput1, userInput2)" class="fluid ui yellow basic button">2. Get Tweets</button>
+<button ng-show="myId" ng-click="stopStreamC(myId)" class="fluid ui purple basic button">3. Stop Stream</button>
 
 <!-- <div class="ui form">
   <div class="fields">
@@ -31,7 +83,7 @@
 </div> -->
 		 
 <p></p>
-	<div class="ui divided grid">
+	<div ng-show="myId" class="ui divided grid">
 	<div class="row">
 		<div class="eight wide column">
 <!-- 		<img src="http://www.dolphins-world.com/wp-content/uploads/dolphin-main.jpg" alt=""> -->
@@ -40,7 +92,7 @@
 		</canvas> 
 		</div>
 
-		<div class="four wide column">
+		<div class="four wide column" style="overflow: hidden;">
 		<i style="color: #ead61c" class="big twitter icon"></i> 
 		<h3 ng-show="userInput1">{{userInput1}} - {{choice1Info.length}} votes</h3>
 		<!-- <ul>
@@ -56,7 +108,7 @@
  		 		  </div>
  		 		</div>
  		</div>
- 		<div class="four wide column">
+ 		<div class="four wide column" style="overflow: scroll;">
  		<i style="color: #4d1b7b" class="big twitter icon"></i> 
  		<h3 ng-show="userInput2">{{userInput2}} - {{choice2Info.length}} votes</h3>
  		
@@ -72,3 +124,8 @@
  		</div>
  		</div>
  	</div>
+	</div>
+
+	<div class="one wide column"></div>
+
+</div>

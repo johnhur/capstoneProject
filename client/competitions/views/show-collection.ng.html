@@ -13,14 +13,14 @@
 		</canvas> 
 		</div>
 
-		<div class="four wide column">
+		<div class="four wide column" style="overflow: hidden;">
 		<i style="color: #ead61c" class="big twitter icon"></i> 
 		<h3 ng-show="word1">{{word1}} - {{choice1Info.length}} votes</h3>
 		<!-- <ul>
   		<li ng-repeat="t in cats | orderBy:'-'">{{t.tweeter}} likes {{t.choice}}</li>
  		</ul> -->
 		
-		<div class="ui list">
+		<div class="ui list overflow">
 		  <div class="item" ng-repeat="t in choice1Info | orderBy:'-'">
 		  <i style="color: #ead61c" class="large twitter icon"></i>
 		    <div class="content">
@@ -35,7 +35,7 @@
 	<i style="color: #4d1b7b" class="big twitter icon"></i> 
 	<h3 ng-show="word2">{{word2}} - {{choice2Info.length}} votes</h3>
 
-		<div class="ui list">
+		<div class="ui list overflow">
 		  <div class="item" ng-repeat="t in choice2Info | orderBy:'-'">
 		  <i style="color: #4d1b7b" class="large twitter icon"></i>
 		    <div class="content">

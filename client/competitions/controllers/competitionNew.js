@@ -1,4 +1,4 @@
-angular.module('tweet-vote').controller('CompGraphController', ['$scope', '$meteor',
+angular.module('tweet-vote').controller('CompNewController', ['$scope', '$meteor',
       function($scope, $meteor) {
        
    $scope.competitions = $meteor.collection(Competitions).subscribe("comps")
@@ -15,11 +15,13 @@ angular.module('tweet-vote').controller('CompGraphController', ['$scope', '$mete
                 
           newScore1 = $scope.choice1Info.length
           newScore2 = $scope.choice2Info.length
-  
-          $scope.labels = [$scope.userInput1, $scope.userInput2];
           $scope.data = [newScore1, newScore2]  
-          $scope.colours = ['#ead61c','#4d1b7b'];
-      }
+          }
+
+          $scope.labels = [$scope.userInput1, $scope.userInput2];
+         
+          $scope.colours = ['#ead61c','#4d1b7b'];   
+
       })
 
     // modeling data with user id as a key with two different collections. 

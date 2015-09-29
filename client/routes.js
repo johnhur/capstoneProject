@@ -10,7 +10,7 @@ angular.module('tweet-vote').config(['$routeProvider', '$locationProvider', func
 	})
 	.when('/new', {
 		templateUrl:'client/competitions/views/new-collection.ng.html',
-		controller: 'CompGraphController'
+		controller: 'CompNewController'
 	})
 	.when('/competitions/:id',{
 		templateUrl:'client/competitions/views/show-collection.ng.html',
