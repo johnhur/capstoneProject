@@ -11,6 +11,7 @@
 <div class="ui grid">
 
 <div id="barGraph" class="twelve wide column">
+<h2>Competition Results</h2>
 <canvas id="bar" class="chart chart-bar"
   chart-data="data" chart-colours="colours" chart-labels="labels">
 </canvas>
@@ -21,12 +22,12 @@
 
 
 <p></p>
-<div id="search" class="ui medium icon input">
+<div id="search" class="ui medium icon input" style="padding-bottom: 1%;">
 <input ng-model="search" placeholder="Search By Name" type="text">
 <i class="search icon"></i>
 </div>
 
-
+<div class="overflow">
 <table class="ui celled table">
   <thead>
     <tr>
@@ -47,5 +48,6 @@
     </tr>
   </tbody>
 </table>
+</div>
 
 </div>

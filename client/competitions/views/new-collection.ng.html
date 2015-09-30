@@ -30,8 +30,6 @@
 <!--   <h1>Tweel</h1>
   <meteor-include src="loginButtons"></meteor-include> -->
 </header>
-
-<h1>GET THE SERVER SIDE TO CHECK IF COMP IS LIVE OR NOT, BEFORE ADDING TO THE COMPETITION</h1>
  				
 <!-- 	<div class="ui input" ng-show="$root.currentUser"> -->
 <!-- <div class="ui input">
@@ -61,9 +59,9 @@
   </div>
 </div>
 
-<button ng-click="createPoll(competitionName, userInput1, userInput2)" class="fluid ui purple basic button">1. Create Poll</button>
-<button ng-show="myId" ng-click="getTweetsC(myId, competitionName, userInput1, userInput2)" class="fluid ui yellow basic button">2. Get Tweets</button>
-<button ng-show="myId" ng-click="stopStreamC(myId)" class="fluid ui purple basic button">3. Stop Stream</button>
+<button ng-click="createPoll(competitionName, userInput1, userInput2)" class="fluid ui purple basic button">Create Poll</button>
+<button style="margin-top: 1%" ng-show="myId" ng-click="getTweetsC(myId, competitionName, userInput1, userInput2)" class="fluid ui purple button"><i class="play icon"></i> Start</button>
+<button style="margin-top: 1%" ng-show="myId" ng-click="stopStreamC(myId)" class="fluid ui red button"><i class="stop icon"></i>Stop</button>
 
 <!-- <div class="ui form">
   <div class="fields">

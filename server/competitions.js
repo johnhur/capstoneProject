@@ -62,8 +62,8 @@ Meteor.methods({
                 tempTweets.push(user)
                  
                 tempTweets.forEach(function(t){
-                  console.log(JSON.stringify(t, null, 4))
-                  console.log("this is word1: " + word1)
+                  console.log(JSON.stringify(t, null, 4)) // to see object returned..
+                  console.log("this is word1: " + word1) 
                   if ("#" + t.choice == word1){
                     arr.push(t)
                   } else {
@@ -71,14 +71,17 @@ Meteor.methods({
                   }
                 })
 
-                Competitions.update(myId,{
-                  $set: { key1: {
-                      word: word1, 
-                      tweets: arr
-                      } 
-                    }
-                })
-                     console.log(arr)
+                if (Competitions.find({_id: myId}).is_live == false){
+                  return
+                } else {
+                  Competitions.update(myId,{
+                    $set: { key1: {
+                        word: word1, 
+                        tweets: arr
+                        } 
+                      }
+                  })
+                }
                 } else if("#" + hash.text == word2){
 
                 var tempTweets2 = myComp[0].key2.tweets
@@ -96,16 +99,18 @@ Meteor.methods({
                   }
                 })
 
-                console.log("COMPETITION BY ID: " + (Competitions.find({_id: myId})));
-
-                Competitions.update(myId,{
-                  $set: { key2: {
-                      word: word2, 
-                      tweets: arr2
-                      } 
+                if (Competitions.find({_id: myId}).is_live == false){
+                  return
+                } else {
+                  Competitions.update(myId,{
+                    $set: { key2: {
+                        word: word2, 
+                        tweets: arr2
+                        } 
                     }
-                })
+                  })
                 }
+              }
           })
         }))
       },
