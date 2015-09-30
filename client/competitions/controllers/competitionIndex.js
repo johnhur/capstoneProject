@@ -9,27 +9,27 @@ $meteor.autorun($scope, function(){
 
 $scope.data = [[],[]]
 arr = []
-// making unique graph data visualizations. 
-var competitionData = {
+
+
+var competitionData = { // object for competition data visualization
 	names: [], // array of names for $scope.labels
 	choice1: [], // number for $scope.data
   choice2: [] // number for $scope.data
 }
 
+var mostPopularTweets = {} // this is for graphing popular tweel choices  *** INCOMPLETE ***
 
-var mostPopularTweets = {} // for more graph visualization of most popular tweel words. 
-// function getData(){
 	
 $scope.competitions.forEach(function(data){
-// 	console.log(data.name)
-	competitionData.names.push(data.name); // graphs most popular competitions in application. 
+	competitionData.names.push(data.name); // pushing into object to use for the results on the bar graph. 
 	competitionData.choice1.push(data.key1.tweets.length)
 	competitionData.choice2.push(data.key2.tweets.length)
 	arr = competitionData.names
+})
 
-	$scope.data[0] = competitionData.choice1
-	$scope.data[1] = competitionData.choice2
-
+$scope.data[0] = competitionData.choice1
+$scope.data[1] = competitionData.choice2
+// ***************** Additional Graph Visualizations (INCOMPLETE) *********************
 	// if (data.is_live == true) {
 	// 	mostPopularComps.live.push(data.key1.tweets.length + data.key2.tweets.length); 
 	// 	mostPopularComps.complete.push(0);
@@ -46,7 +46,6 @@ $scope.competitions.forEach(function(data){
 	// 		mostPopularTweets[data.key2.word2] = data.key2.tweets.length
 	// 	}
 
-
 	// } else if (data.is_live == false){
 	// 	mostPopularComps.live.push(0);
 	// 	mostPopularComps.complete.push(data.key2.tweets.length + data.key1.tweets.length);
@@ -58,7 +57,6 @@ $scope.competitions.forEach(function(data){
 	// $scope.data[0] = mostPopularComps.live
 	// $scope.data[1] = mostPopularComps.complete
 
-})
 // 	console.log("this is scope.data[0]: " + $scope.data[0])
 // 	console.log("this is scope.data[1]: " + $scope.data[1])
 // }
@@ -68,8 +66,7 @@ $scope.labels = arr;
 }
 graph()
 
-var graphData = $scope.getCollectionReactively('competitions')
-
+var graphData = $scope.getCollectionReactively('competitions') // REACTIVE VARIABLE: whenever the collection is changed, meteor.autorun is triggered. 
 
 })
 }])

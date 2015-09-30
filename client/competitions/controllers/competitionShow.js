@@ -16,9 +16,9 @@ angular.module('tweet-vote').controller('competitionShowController', ['$scope', 
       Score1 = $scope.choice1Info.length
       Score2 = $scope.choice2Info.length
 
-      $scope.labels = [$scope.userInput1, $scope.userInput2];
       $scope.data = [Score1, Score2]  
       $scope.colors = ['#ead61c','#4d1b7b'];
+      $scope.labels = [$scope.userInput1, $scope.userInput2];
 
       if (graphData[0].live == false) {
         if (Score1 > Score2) {

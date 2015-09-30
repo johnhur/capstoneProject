@@ -60,8 +60,8 @@
 </div>
 
 <button ng-click="createPoll(competitionName, userInput1, userInput2)" class="fluid ui purple basic button">Create Poll</button>
-<button style="margin-top: 1%" ng-show="myId" ng-click="getTweetsC(myId, competitionName, userInput1, userInput2)" class="fluid ui purple button"><i class="play icon"></i> Start</button>
-<button style="margin-top: 1%" ng-show="myId" ng-click="stopStreamC(myId)" class="fluid ui red button"><i class="stop icon"></i>Stop</button>
+<button style="margin-top: 1%" ng-show="myId && !stopToggle" ng-click="getTweets(myId, competitionName, userInput1, userInput2)" class="fluid ui purple button"><i class="play icon"></i> Start</button>
+<button style="margin-top: 1%" ng-show="stopToggle" ng-click="stopStream(myId)" class="fluid ui red button"><i class="stop icon"></i>Stop</button>
 
 <!-- <div class="ui form">
   <div class="fields">
