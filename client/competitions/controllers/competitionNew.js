@@ -8,11 +8,12 @@ angular.module('tweet-vote').controller('CompNewController', ['$scope', '$meteor
 
    var data = $scope.getCollectionReactively("competitions") // REACTIVE VARIABLE
    choice1Data = (Competitions.find({_id: $scope.myId}).fetch())
+   $scope.myComp = choice1Data
 
     if (choice1Data.length > 0){
     $scope.choice1Info = choice1Data[0].key1.tweets
     $scope.choice2Info = choice1Data[0].key2.tweets
-            
+  
     newScore1 = $scope.choice1Info.length
     newScore2 = $scope.choice2Info.length
     $scope.data = [newScore1, newScore2]  

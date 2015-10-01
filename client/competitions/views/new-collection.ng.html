@@ -126,4 +126,9 @@
 
 	<div class="one wide column"></div>
 
+  <div ng-show="!myComp.is_live"> <!-- not working -->
+  <div class="animated fadeInUp result" ng-show="choice1Info.length > choice2Info.length">{{userInput1}} wins!</div>
+  <div class="animated fadeInUp result" ng-show="choice2Info.length > choice1Info.length">{{userInput2}} wins!</div>
+  </div>
+
 </div>

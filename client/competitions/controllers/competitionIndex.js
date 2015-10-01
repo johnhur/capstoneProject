@@ -10,7 +10,6 @@ $meteor.autorun($scope, function(){
 $scope.data = [[],[]]
 arr = []
 
-
 var competitionData = { // object for competition data visualization
 	names: [], // array of names for $scope.labels
 	choice1: [], // number for $scope.data
@@ -18,12 +17,11 @@ var competitionData = { // object for competition data visualization
 }
 
 var mostPopularTweets = {} // this is for graphing popular tweel choices  *** INCOMPLETE ***
-
 	
 $scope.competitions.forEach(function(data){
 	competitionData.names.push(data.name); // pushing into object to use for the results on the bar graph. 
-	competitionData.choice1.push(data.key1.tweets.length)
-	competitionData.choice2.push(data.key2.tweets.length)
+	competitionData.choice1.push(data.key1.tweets.length);
+	competitionData.choice2.push(data.key2.tweets.length);
 	arr = competitionData.names
 })
 
@@ -65,8 +63,7 @@ function graph() {
 $scope.labels = arr;
 }
 graph()
-
 var graphData = $scope.getCollectionReactively('competitions') // REACTIVE VARIABLE: whenever the collection is changed, meteor.autorun is triggered. 
-
 })
+
 }])
