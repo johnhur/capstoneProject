@@ -2,9 +2,11 @@ angular.module('tweet-vote').controller('CompNewController', ['$scope', '$meteor
   function($scope, $meteor) {
   
    $scope.competitions = $meteor.collection(Competitions).subscribe("comps")
-       
+   $scope.showWinner = false
+
    $meteor.autorun($scope, function(){
    $scope.userId = Meteor.userId()
+   console.log('autorun')
 
    var data = $scope.getCollectionReactively("competitions") // REACTIVE VARIABLE
    choice1Data = (Competitions.find({_id: $scope.myId}).fetch())
@@ -25,6 +27,7 @@ angular.module('tweet-vote').controller('CompNewController', ['$scope', '$meteor
 
     $scope.stopToggle = false // used to show and hide the stop and play button.
 
+
     $scope.createPoll = function(compName, choiceUno, choiceDos){
       Meteor.call('createPoll', compName, choiceUno, choiceDos, function(err, results){
         if(err) {
@@ -42,6 +45,7 @@ angular.module('tweet-vote').controller('CompNewController', ['$scope', '$meteor
     }
 
     $scope.stopStream = function(myId){
+      $scope.showWinner = !$scope.showWinner
       $meteor.call('stopStream', myId)
     }
 

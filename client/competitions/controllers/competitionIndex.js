@@ -5,7 +5,14 @@ $scope.competitions = $meteor.collection(Competitions).subscribe('comps')
 $scope.series = ['Tweel A', 'Tweel B']
 $scope.colours = ['#ead61c','#4d1b7b'];
 
-$meteor.autorun($scope, function(){ 
+
+
+var graphUpdate = Deps.autorun(function(){
+	console.log("graph update!!!!")
+})
+
+
+$meteor.autorun($scope, function(){ // not triggering when new tweet is pushed into array. 
 
 $scope.data = [[],[]]
 arr = []
@@ -17,16 +24,19 @@ var competitionData = { // object for competition data visualization
 }
 
 var mostPopularTweets = {} // this is for graphing popular tweel choices  *** INCOMPLETE ***
-	
+
+console.log("some change");
 $scope.competitions.forEach(function(data){
 	competitionData.names.push(data.name); // pushing into object to use for the results on the bar graph. 
 	competitionData.choice1.push(data.key1.tweets.length);
 	competitionData.choice2.push(data.key2.tweets.length);
 	arr = competitionData.names
+	$scope.data[0] = competitionData.choice1
+	$scope.data[1] = competitionData.choice2
 })
 
-$scope.data[0] = competitionData.choice1
-$scope.data[1] = competitionData.choice2
+
+
 // ***************** Additional Graph Visualizations (INCOMPLETE) *********************
 	// if (data.is_live == true) {
 	// 	mostPopularComps.live.push(data.key1.tweets.length + data.key2.tweets.length); 

@@ -5,6 +5,36 @@
 	max-width: 90%;
 }
 
+/*#arrow{
+  margin-left: -20px;
+/*  margin-top: 40px;*/
+/*  padding-top: 40px;
+  color: teal;
+  -webkit-transition: color 5s;
+  -moz-transition: color 3s;
+  -o-transition: color 3s;
+  -ms-transition: color 3s;
+  transition: color 5s;
+}
+*/
+/*#arrow:hover{
+  color: white;
+}*/
+
+#arrow {
+  margin-left: 15px;
+  margin-top: 45px;
+  position:fixed;
+  -webkit-animation:arrow 1.25s infinite;
+/*  -webkit-animation-timing-function: linear;*/
+}
+
+@-webkit-keyframes arrow {
+  0%       { left:0px; }
+  50%      { left:7px; }
+  100%     { left:0px; }
+}
+
 #barGraph {
 	border: 1px solid purple;
 /*	border-radius: 1%;*/

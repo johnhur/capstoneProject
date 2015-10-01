@@ -1,5 +1,6 @@
 <div class="ui grid">
-<div class="one wide column"></div>
+<div class="one wide column">
+</div>
 <div class="fourteen wide column">
 
 <header>
@@ -9,7 +10,7 @@
     <i class="connectdevelop icon"></i>
     <div class="content">
       <div class="title">Create Poll</div>
-      <div class="description">Fill in Competition Information</div>
+      <div class="description">Fill in Competition Information and click Create Poll</div>
     </div>
   </div>
   <div class="step">
@@ -41,6 +42,8 @@
 		<button ng-show="myId" ng-click="stopStreamC(myId)" class="ui purple basic button">Stop Stream</button>
 </div> -->
 
+
+<i id="arrow" class="arrow right icon"></i>
 
 <div class="ui form" style="padding-top: 2%;">
   <div class="three fields">
@@ -126,7 +129,7 @@
 
 	<div class="one wide column"></div>
 
-  <div ng-show="!myComp.is_live"> <!-- not working -->
+  <div ng-show="showWinner"> <!-- not working -->
   <div class="animated fadeInUp result" ng-show="choice1Info.length > choice2Info.length">{{userInput1}} wins!</div>
   <div class="animated fadeInUp result" ng-show="choice2Info.length > choice1Info.length">{{userInput2}} wins!</div>
   </div>
