@@ -43,9 +43,9 @@
 </div> -->
 
 
-<i id="arrow" class="arrow right icon"></i>
+<!-- <i id="arrow" class="arrow right icon"></i> -->
 
-<div class="ui form" style="padding-top: 2%;">
+<div ng-show="inputToggle" class="ui form" style="padding-top: 2%;">
   <div class="three fields">
     <div class="field">
       <label>Competition Name</label>
@@ -62,9 +62,9 @@
   </div>
 </div>
 
-<button ng-click="createPoll(competitionName, userInput1, userInput2)" class="fluid ui purple basic button">Create Poll</button>
-<button style="margin-top: 1%" ng-show="myId && !stopToggle" ng-click="getTweets(myId, competitionName, userInput1, userInput2)" class="fluid ui purple button"><i class="play icon"></i> Start</button>
-<button style="margin-top: 1%" ng-show="stopToggle" ng-click="stopStream(myId)" class="fluid ui red button"><i class="stop icon"></i>Stop</button>
+<button ng-show="inputToggle" ng-click="createPoll(competitionName, userInput1, userInput2)" class="fluid ui purple basic button">Create Poll</button>
+<button style="margin-top: 2%" ng-show="myId && !stopToggle" ng-click="getTweets(myId, competitionName, userInput1, userInput2)" class="fluid ui purple button"><i class="play icon"></i> Start</button>
+<button style="margin-top: 2%" ng-show="stopToggle" ng-click="stopStream(myId)" class="fluid ui red button"><i class="stop icon"></i>Stop</button>
 
 <!-- <div class="ui form">
   <div class="fields">
@@ -93,13 +93,13 @@
 		</canvas> 
 		</div>
 
-		<div class="four wide column" style="overflow: hidden;">
+		<div class="four wide column">
 		<i style="color: #ead61c" class="big twitter icon"></i> 
 		<h3 ng-show="userInput1">{{userInput1}} - {{choice1Info.length}} votes</h3>
 		<!-- <ul>
   		<li ng-repeat="t in cats | orderBy:'-'">{{t.tweeter}} likes {{t.choice}}</li>
  		</ul> -->
- 		 		<div class="ui list">
+ 		 		<div class="overflow ui list">
  		 		  <div class="item" ng-repeat="t in choice1Info | orderBy:'-'">
  		 		  <i style="color: #ead61c" class="large twitter icon"></i>
  		 		    <div class="content">
@@ -109,11 +109,11 @@
  		 		  </div>
  		 		</div>
  		</div>
- 		<div class="four wide column" style="overflow: scroll;">
+ 		<div class="four wide column">
  		<i style="color: #4d1b7b" class="big twitter icon"></i> 
  		<h3 ng-show="userInput2">{{userInput2}} - {{choice2Info.length}} votes</h3>
  		
- 		<div class="ui list">
+ 		<div class="overflow ui list">
  		  <div class="item" ng-repeat="t in choice2Info | orderBy:'-'">
  		  <i style="color: #4d1b7b" class="large twitter icon"></i>
  		    <div class="content">

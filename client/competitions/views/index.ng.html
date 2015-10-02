@@ -37,7 +37,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="comp in competitions | filter: search" >
+    <tr ng-repeat="comp in competitionsIndex | filter: search" >
       <td><a href="#/competitions/{{comp._id}}">{{comp.name}}</a></td>
       <td>
         <span ng-show="comp.is_live">Live</span>

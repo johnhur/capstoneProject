@@ -26,9 +26,11 @@ angular.module('tweet-vote').controller('CompNewController', ['$scope', '$meteor
     })
 
     $scope.stopToggle = false // used to show and hide the stop and play button.
-
+    $scope.inputToggle = true
 
     $scope.createPoll = function(compName, choiceUno, choiceDos){
+      $scope.inputToggle = !$scope.inputToggle
+
       Meteor.call('createPoll', compName, choiceUno, choiceDos, function(err, results){
         if(err) {
           console.log(err)
