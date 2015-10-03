@@ -1,11 +1,13 @@
-angular.module('tweet-vote').controller('CompIndexController', ['$scope', '$meteor',
-    function($scope, $meteor) {
+angular.module('tweet-vote').controller('CompIndexController', ['$scope', '$meteor', '$interval',
+    function($scope, $meteor, $interval) {
      
 $scope.competitionsIndex = $meteor.collection(Competitions)
 $scope.series = ['Tweel A', 'Tweel B']
 $scope.colours = ['#ead61c','#4d1b7b'];
 
- $meteor.autorun($scope, function(){ // not triggering when new tweet is pushed into array. 
+ // REACTIVE VARIABLE: whenever the collection is changed, meteor.autorun is triggered. 
+
+ $interval(function(){$meteor.autorun($scope, function(){ // not triggering when new tweet is pushed into array. 
 
 		$scope.data = [[],[]]
 		arr = []
@@ -17,11 +19,9 @@ $scope.colours = ['#ead61c','#4d1b7b'];
 		}
 		// debugger: CAM'S RECOMMENDATION.. 
 		var mostPopularTweets = {} // this is for graphing popular tweel choices  *** INCOMPLETE ***
-		
-		console.log("some change");
-		
-		var graphData = $scope.getCollectionReactively('competitionsIndex') // REACTIVE VARIABLE: whenever the collection is changed, meteor.autorun is triggered. 
 
+		$scope.rData = $scope.getCollectionReactively('competitionsIndex')
+		
 		$scope.competitionsIndex.forEach(function(data){
 			competitionData.names.push(data.name); // pushing into object to use for the results on the bar graph. 
 			competitionData.choice1.push(data.key1.tweets.length);
@@ -34,7 +34,7 @@ $scope.colours = ['#ead61c','#4d1b7b'];
 		
 		$scope.labels = arr;
 
- })
+ })}, 1000)
 // ***************** Additional Graph Visualizations (INCOMPLETE) *********************
 	// if (data.is_live == true) {
 	// 	mostPopularComps.live.push(data.key1.tweets.length + data.key2.tweets.length); 

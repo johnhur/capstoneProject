@@ -3,6 +3,9 @@ angular.module('tweet-vote').controller('competitionShowController', ['$scope', 
     compId = $routeParams.id
     $scope.competitions = $meteor.collection(Competitions).subscribe("comps")
 
+    $scope.colors = ['#ead61c','#4d1b7b'];
+    $scope.labels = [$scope.userInput1, $scope.userInput2];
+
     $meteor.autorun($scope, function(){
     graphData = (Competitions.find({_id: compId}).fetch())
     $scope.mycomp = graphData
@@ -17,19 +20,16 @@ angular.module('tweet-vote').controller('competitionShowController', ['$scope', 
       Score2 = $scope.choice2Info.length
 
       $scope.data = [Score1, Score2]  
-      $scope.colors = ['#ead61c','#4d1b7b'];
-      $scope.labels = [$scope.userInput1, $scope.userInput2];
-
+      
       if (graphData[0].live == false) {
         if (Score1 > Score2) {
           $scope.winner = $scope.word1
-        }
-        else if (Score2 > Score1){
+        } else if (Score2 > Score1){
           $scope.winner = $scope.word2
-        }
-        else {
+        } else {
           $scope.winner = "DRAW"
         }
       }
     })
+    
 }])

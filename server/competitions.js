@@ -1,12 +1,12 @@
-    Meteor.publish("kitties", function(){
-     return Cats.find();
-    })
-    Meteor.publish("doggies", function(){
-     return Dogs.find();
-    })
-    Meteor.publish("comps", function(){
-     return Competitions.find();
-    })
+    // Meteor.publish("kitties", function(){
+    //  return Cats.find();
+    // })
+    // Meteor.publish("doggies", function(){
+    //  return Dogs.find();
+    // })
+    // Meteor.publish("comps", function(){
+    //  return Competitions.find();
+    // })
 
 Meteor.methods({
   createPoll: function(compName, choiceUno, choiceDos){
@@ -15,6 +15,7 @@ Meteor.methods({
          is_live: true,
          createdAt: new Date(),
          owner: Meteor.userId(),
+         count: 0,
          key1: {
            word: choiceUno, 
            tweets: [] 
@@ -73,6 +74,7 @@ Meteor.methods({
              } else {
                Competitions.update(myId,{
                  $set: { key1: {
+                     count: Math.random(),
                      word: word1, 
                      tweets: arr
                      } 
@@ -101,6 +103,7 @@ Meteor.methods({
              } else {
                Competitions.update(myId,{
                  $set: { key2: {
+                     count: Math.random(),
                      word: word2, 
                      tweets: arr2
                      } 

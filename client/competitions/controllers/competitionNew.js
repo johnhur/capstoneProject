@@ -3,6 +3,9 @@ angular.module('tweet-vote').controller('CompNewController', ['$scope', '$meteor
   
    $scope.competitions = $meteor.collection(Competitions).subscribe("comps")
    $scope.showWinner = false
+ 
+   $scope.labels = [$scope.userInput1, $scope.userInput2];
+   $scope.colours = ['#ead61c','#4d1b7b'];   
 
    $meteor.autorun($scope, function(){
    $scope.userId = Meteor.userId()
@@ -20,9 +23,6 @@ angular.module('tweet-vote').controller('CompNewController', ['$scope', '$meteor
     newScore2 = $scope.choice2Info.length
     $scope.data = [newScore1, newScore2]  
     }
-
-    $scope.labels = [$scope.userInput1, $scope.userInput2];
-    $scope.colours = ['#ead61c','#4d1b7b'];   
     })
 
     $scope.stopToggle = false // used to show and hide the stop and play button.
