@@ -1,5 +1,6 @@
-angular.module('tweet-vote').controller('CompNewController', ['$scope', '$meteor',
-  function($scope, $meteor) {
+angular.module('tweet-vote').controller('CompNewController', ['$scope', '$meteor', '$location', '$anchorScroll',
+  function($scope, $meteor, $location, $anchorScroll) {
+
   
    $scope.competitions = $meteor.collection(Competitions).subscribe("comps")
    $scope.showWinner = false
@@ -28,8 +29,17 @@ angular.module('tweet-vote').controller('CompNewController', ['$scope', '$meteor
     $scope.stopToggle = false // used to show and hide the stop and play button.
     $scope.inputToggle = true
 
+
+
     $scope.createPoll = function(compName, choiceUno, choiceDos){
       $scope.inputToggle = !$scope.inputToggle
+
+      $("#step1").removeClass("active step")
+      $("#step1").addClass("step")
+
+      $("#step2").removeClass("disabled step")
+      $("#step2").addClass("active step")
+
 
       Meteor.call('createPoll', compName, choiceUno, choiceDos, function(err, results){
         if(err) {
@@ -42,13 +52,45 @@ angular.module('tweet-vote').controller('CompNewController', ['$scope', '$meteor
      };
 
     $scope.getTweets = function (userId, compName, word1, word2){
+      $("#step2").removeClass("active step")
+      $("#step2").addClass("step")
+
+      $("#step3").removeClass("disabled step")
+      $("#step3").addClass("active step")
+
       $scope.stopToggle = !$scope.stopToggle
       $meteor.call('getTweets', userId, compName, word1, word2)
     }
 
     $scope.stopStream = function(myId){
+
+      $("#step1").removeClass("step")
+      $("#step1").addClass("step")
+
+      $("#step2").removeClass("step")
+      $("#step2").addClass("step")
+
+      $("#step3").removeClass("active step")
+      $("#step3").addClass("step")
+
       $scope.showWinner = !$scope.showWinner
       $meteor.call('stopStream', myId)
+      // $scope.gotoBottom()
     }
+
+    // $scope.gotoBottom = function() {
+    //   $location.hash('bottom');
+    //   // $anchorScroll().yOffset = 50;
+    // }
+
+    $(".jumper").on("click", function( e ) {
+        
+        e.preventDefault();
+
+        $("body, html").animate({ 
+            scrollTop: $( $(this).attr('href') ).offset().top 
+        }, 600);
+        console.log("jumper")
+    });
 
   }])

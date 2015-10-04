@@ -2,6 +2,7 @@ angular.module('tweet-vote').controller('CompIndexController', ['$scope', '$mete
     function($scope, $meteor, $interval) {
      
 $scope.competitionsIndex = $meteor.collection(Competitions)
+debugger
 $scope.series = ['Tweel A', 'Tweel B']
 $scope.colours = ['#ead61c','#4d1b7b'];
 
@@ -12,6 +13,8 @@ $scope.colours = ['#ead61c','#4d1b7b'];
 		$scope.data = [[],[]]
 		arr = []
 		
+
+		choiceArr = {};
 		var competitionData = { // object for competition data visualization
 			names: [], // array of names for $scope.labels
 			choice1: [], // number for $scope.data
@@ -27,6 +30,7 @@ $scope.colours = ['#ead61c','#4d1b7b'];
 			competitionData.choice1.push(data.key1.tweets.length);
 			competitionData.choice2.push(data.key2.tweets.length);
 			arr = competitionData.names
+
 		})
 
 		$scope.data[0] = competitionData.choice1
