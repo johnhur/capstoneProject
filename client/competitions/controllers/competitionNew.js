@@ -1,6 +1,7 @@
-angular.module('tweet-vote').controller('CompNewController', ['$scope', '$meteor', '$location', '$anchorScroll',
-  function($scope, $meteor, $location, $anchorScroll) {
+angular.module('tweet-vote').controller('CompNewController', ['$scope', '$meteor', '$location', '$anchorScroll', '$routeParams',
+  function($scope, $meteor, $location, $anchorScroll, $routeParams) {
 
+  $scope.toggleCreate = false
   
    $scope.competitions = $meteor.collection(Competitions).subscribe("comps")
    $scope.showWinner = false
