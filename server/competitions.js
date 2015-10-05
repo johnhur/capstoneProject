@@ -14,8 +14,6 @@ Meteor.methods({
          name: compName,
          is_live: true,
          createdAt: new Date(),
-         owner: Meteor.userId(),
-         count: 0,
          key1: {
            word: choiceUno, 
            tweets: [] 
