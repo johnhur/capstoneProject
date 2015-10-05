@@ -11,7 +11,7 @@ angular.module('tweet-vote').controller('CompNewController', ['$scope', '$meteor
 
    $meteor.autorun($scope, function(){
    $scope.userId = Meteor.userId()
-   console.log('autorun')
+   
 
    var data = $scope.getCollectionReactively("competitions") // REACTIVE VARIABLE
    choice1Data = (Competitions.find({_id: $scope.myId}).fetch())
@@ -48,7 +48,7 @@ angular.module('tweet-vote').controller('CompNewController', ['$scope', '$meteor
         } else {
           $scope.myId = results
         }
-        console.log($scope.myId);
+        
       })
      };
 
@@ -76,22 +76,10 @@ angular.module('tweet-vote').controller('CompNewController', ['$scope', '$meteor
 
       $scope.showWinner = !$scope.showWinner
       $meteor.call('stopStream', myId)
-      // $scope.gotoBottom()
+
     }
 
-    // $scope.gotoBottom = function() {
-    //   $location.hash('bottom');
-    //   // $anchorScroll().yOffset = 50;
-    // }
 
-    $(".jumper").on("click", function( e ) {
-        
-        e.preventDefault();
-
-        $("body, html").animate({ 
-            scrollTop: $( $(this).attr('href') ).offset().top 
-        }, 600);
-        console.log("jumper")
-    });
+   
 
   }])
