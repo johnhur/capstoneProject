@@ -1,42 +1,6 @@
-Using one collection, I could more easily view competitions in a list format on my index page..
+Tweel is a real-time, single-page, web application that allows users to create competitions/polls that have participants use twitter as a voting mechanism.
 
-Competition.insert({
-         name: compName,
-         key1: {
-           word: choiceUno, 
-           tweets: [] 
-         },
-         key2: {
-           word: choiceDos,
-           tweets: [] 
-         }
-})
+Project URL: https://tweel.meteor.com/
 
-If I use two collections, I could insert the mongoid into both documents for each collection.. 
-when searching for the data on the client side, I could use the competition name and the userId to return to me all the documents with those parameters.
-to trigger the autorun, I could use the getCollectionReactively method for both collections..
+- This project was built using HTML & CSS, AngularJS, & Meteor.js
 
-    Choice1.insert({
-          userid: "" ,
-          compName: "" .
-          name: user.name,
-          text: user.text,
-          choice: user.choice
-    });
-
-    Choice2.insert({
-          userid: ,
-          compName: "" .
-          name: user.name,
-          text: user.text,
-          choice: user.choice
-    });
-
-consider userId, is_live key, and date. 
-
-animated bird. responsive based on incoming tweet. 
-
-// viewport?? semantic ui styling
-
-// set a scheduler for a competition. 
-    // ex. every 5 minutes, 
